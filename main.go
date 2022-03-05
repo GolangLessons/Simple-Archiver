@@ -1,6 +1,8 @@
 package main
 
-import "archiver/cmd"
+import (
+	"archiver/cmd"
+)
 
 func main() {
 	// archiver pack vlc <path to file>
