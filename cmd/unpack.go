@@ -10,6 +10,7 @@ import (
 
 	"archiver/lib/comression"
 	"archiver/lib/comression/vlc"
+	"archiver/lib/comression/vlc/table/shannon_fano"
 )
 
 var unpackCmd = &cobra.Command{
@@ -28,7 +29,8 @@ func unpack(cmd *cobra.Command, args []string) {
 
 	switch method {
 	case "vlc":
-		decoder = vlc.New()
+		tblGen := shannon_fano.NewGenerator()
+		decoder = vlc.New(tblGen)
 	default:
 		cmd.PrintErrln("unknown method")
 		return
@@ -51,7 +53,10 @@ func unpack(cmd *cobra.Command, args []string) {
 		handleErr(err)
 	}
 
-	packed := decoder.Decode(data)
+	packed, err := decoder.Decode(data)
+	if err != nil {
+		panic("can't decode data: " + err.Error())
+	}
 
 	err = os.WriteFile(unpackedFileName(filePath), []byte(packed), 0644)
 	if err != nil {

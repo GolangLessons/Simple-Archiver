@@ -11,6 +11,7 @@ import (
 
 	"archiver/lib/comression"
 	"archiver/lib/comression/vlc"
+	"archiver/lib/comression/vlc/table/shannon_fano"
 )
 
 var packCmd = &cobra.Command{
@@ -30,7 +31,7 @@ func pack2(cmd *cobra.Command, args []string) {
 
 	switch method {
 	case "vlc":
-		encoder = vlc.New()
+		encoder = vlc.New(shannon_fano.NewGenerator())
 	default:
 		cmd.PrintErrln("unknown method")
 

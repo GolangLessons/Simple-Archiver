@@ -5,5 +5,5 @@ type Encoder interface {
 }
 
 type Decoder interface {
-	Decode(encodedData []byte) string
+	Decode(encodedData []byte) (string, error)
 }
