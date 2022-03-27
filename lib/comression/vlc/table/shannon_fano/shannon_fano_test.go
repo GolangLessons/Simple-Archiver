@@ -19,6 +19,14 @@ func Test_countCharacters(t *testing.T) {
 				'a': 3,
 			},
 		},
+		{
+			name: "base test",
+			str:  "effective",
+			want: charStat{
+				'z': 2,
+				'a': 3,
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -182,7 +190,7 @@ func Test_assignCodes(t *testing.T) {
 			},
 		},
 		{
-			name: "uncertainty (need leftmost)",
+			name: "uncertainty (need rightmost)",
 			codes: []Code{
 				{Quantity: 1},
 				{Quantity: 1},
