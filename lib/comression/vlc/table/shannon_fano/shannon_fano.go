@@ -102,11 +102,13 @@ func bestDividePosition(codes []Code) int {
 		total += code.Quantity
 	}
 
-	left := codes[0].Quantity
+	left := 0
 	best := math.MaxInt
 	bestPosition := 0
 
 	for i := 0; i < len(codes)-1; i++ {
+		left += codes[i].Quantity
+
 		right := total - left
 
 		diff := abs(right - left)
@@ -115,7 +117,6 @@ func bestDividePosition(codes []Code) int {
 		}
 
 		best = diff
-		left += codes[i].Quantity
 		bestPosition = i + 1
 	}
 

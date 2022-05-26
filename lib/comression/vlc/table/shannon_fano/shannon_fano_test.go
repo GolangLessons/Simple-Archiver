@@ -78,13 +78,6 @@ func Test_bestDividePosition(t *testing.T) {
 			want: 0,
 		},
 		{
-			name: "one element",
-			codes: []Code{
-				{Quantity: 2},
-			},
-			want: 0,
-		},
-		{
 			name: "two elements",
 			codes: []Code{
 				{Quantity: 2},
